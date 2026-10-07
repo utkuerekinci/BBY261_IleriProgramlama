@@ -6,11 +6,11 @@ function ThemeToggle({ theme, onToggle }) {
       type="button"
       className="theme-toggle"
       onClick={onToggle}
-      aria-label={`Switch to ${isDark ? 'light' : 'dark'} theme`}
-      title={`Switch to ${isDark ? 'light' : 'dark'} theme`}
+      aria-label={`${isDark ? 'Açık' : 'Koyu'} temaya geç`}
+      title={`${isDark ? 'Açık' : 'Koyu'} temaya geç`}
     >
       <span className="theme-toggle-icon" aria-hidden="true">{isDark ? '☀' : '☾'}</span>
-      <span>{isDark ? 'Light' : 'Dark'}</span>
+      <span>{isDark ? 'Açık' : 'Koyu'}</span>
     </button>
   )
 }

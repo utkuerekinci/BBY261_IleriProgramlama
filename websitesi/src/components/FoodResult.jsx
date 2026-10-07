@@ -3,7 +3,7 @@ function FoodResult({ food, isFavorite, onToggleFavorite, onTryAgain }) {
     return (
       <div className="result-placeholder">
         <span aria-hidden="true">🍽️</span>
-        <p>Your next meal is one click away.</p>
+        <p>Sıradaki yemeğin yalnızca bir tık uzağında.</p>
       </div>
     )
   }
@@ -14,7 +14,7 @@ function FoodResult({ food, isFavorite, onToggleFavorite, onTryAgain }) {
         type="button"
         className={`heart-button ${isFavorite ? 'is-favorite' : ''}`}
         onClick={() => onToggleFavorite(food)}
-        aria-label={isFavorite ? `Remove ${food.name} from favorites` : `Add ${food.name} to favorites`}
+        aria-label={isFavorite ? `${food.name} favorilerden çıkar` : `${food.name} favorilere ekle`}
         aria-pressed={isFavorite}
       >
         {isFavorite ? '♥' : '♡'}
@@ -24,7 +24,7 @@ function FoodResult({ food, isFavorite, onToggleFavorite, onTryAgain }) {
       <h2>{food.name}</h2>
       <p>{food.description}</p>
       <button type="button" className="try-again-button" onClick={onTryAgain}>
-        Try Again
+        Tekrar Dene
       </button>
     </article>
   )

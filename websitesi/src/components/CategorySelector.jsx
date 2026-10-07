@@ -6,8 +6,8 @@ function CategorySelector({ selectedCategory, onSelect }) {
       <div className="section-heading">
         <span className="step-number">1</span>
         <div>
-          <h2 id="category-heading">Choose a craving</h2>
-          <p>Pick a category, or leave it up to chance.</p>
+          <h2 id="category-heading">Canın ne çekiyor?</h2>
+          <p>Bir kategori seç veya kararı şansa bırak.</p>
         </div>
       </div>
 

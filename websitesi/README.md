@@ -1,17 +1,17 @@
 # What Should I Eat?
 
-A small, responsive React app that randomly chooses a meal. Users can filter by category, switch between light and dark themes, save favorites, and revisit their five most recent picks. Theme preference, favorites, and history are stored in the browser with `localStorage`, so no backend is required.
+Rastgele yemek seçen küçük ve duyarlı bir React uygulaması. Kullanıcılar kategori seçebilir, açık ve koyu tema arasında geçiş yapabilir, favorilerini kaydedebilir ve son beş seçimlerini görebilir. Tema tercihi, favoriler ve geçmiş tarayıcının `localStorage` alanında saklandığı için arka uç gerekmez.
 
-## Tech stack
+## Kullanılan teknolojiler
 
 - React
 - Vite
-- Plain CSS
-- Browser `localStorage`
+- Sade CSS
+- Tarayıcı `localStorage` alanı
 
-## Run locally
+## Yerel ortamda çalıştırma
 
-Requirements: Node.js 18 or newer and npm.
+Gereksinimler: Node.js 18 veya üzeri ve npm.
 
 ```bash
 cd websitesi
@@ -19,37 +19,37 @@ npm install
 npm run dev
 ```
 
-Vite will print a local address, usually `http://localhost:5173`.
+Vite yerel bir adres gösterecektir; bu adres genellikle `http://localhost:5173` olur.
 
-## Create a production build
+## Üretim derlemesi oluşturma
 
 ```bash
 npm run build
 ```
 
-The optimized files will be created in the `dist` directory. To preview that build locally:
+İyileştirilmiş üretim dosyaları `dist` klasöründe oluşturulur. Derlemeyi yerel ortamda önizlemek için:
 
 ```bash
 npm run preview
 ```
 
-## Deploy to Vercel
+## Vercel'e yükleme
 
-### Option 1: Vercel dashboard
+### Seçenek 1: Vercel paneli
 
-1. Push this project to a GitHub, GitLab, or Bitbucket repository.
-2. Sign in at [vercel.com](https://vercel.com) and select **Add New → Project**.
-3. Import the repository.
-4. If this app is inside a larger repository, set **Root Directory** to `websitesi`.
-5. Vercel should detect **Vite** automatically. Confirm these settings:
-   - Build command: `npm run build`
-   - Output directory: `dist`
-   - Install command: `npm install`
-6. Select **Deploy**.
+1. Projeyi GitHub, GitLab veya Bitbucket deposuna gönderin.
+2. [vercel.com](https://vercel.com) üzerinden oturum açıp **Add New → Project** seçeneğine basın.
+3. Depoyu içe aktarın.
+4. Uygulama daha büyük bir deponun içindeyse **Root Directory** alanını `websitesi` olarak ayarlayın.
+5. Vercel'in **Vite** seçeneğini algıladığını doğrulayın ve şu ayarları kullanın:
+   - Build Command: `npm run build`
+   - Output Directory: `dist`
+   - Install Command: `npm install`
+6. **Deploy** düğmesine basın.
 
-No environment variables are needed.
+Ortam değişkeni gerekmez.
 
-### Option 2: Vercel CLI
+### Seçenek 2: Vercel komut satırı
 
 ```bash
 npm install -g vercel
@@ -57,13 +57,13 @@ cd websitesi
 vercel
 ```
 
-Follow the prompts. For a production deployment, run:
+Ekrandaki adımları izleyin. Üretim ortamına yüklemek için:
 
 ```bash
 vercel --prod
 ```
 
-## Project structure
+## Proje yapısı
 
 ```text
 src/
@@ -72,6 +72,7 @@ src/
     FoodResult.jsx
     Favorites.jsx
     RecentPicks.jsx
+    ThemeToggle.jsx
   data/
     foods.js
   App.jsx
@@ -79,4 +80,4 @@ src/
   styles.css
 ```
 
-The meal list is kept in `src/data/foods.js`, making it easy to explain or expand in class.
+Yemek listesi `src/data/foods.js` dosyasında tutulur; böylece sınıfta anlatmak ve yeni yemekler eklemek kolaydır.

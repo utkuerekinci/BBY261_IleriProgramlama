@@ -2,11 +2,11 @@ function RecentPicks({ history }) {
   return (
     <section className="saved-panel" aria-labelledby="recent-heading">
       <div className="panel-title-row">
-        <h2 id="recent-heading"><span aria-hidden="true">↻</span> Recently Picked</h2>
+        <h2 id="recent-heading"><span aria-hidden="true">↻</span> Son Seçilenler</h2>
       </div>
 
       {history.length === 0 ? (
-        <p className="empty-message">Your last five picks will appear here.</p>
+        <p className="empty-message">Son beş seçimin burada görünecek.</p>
       ) : (
         <ol className="meal-list recent-list">
           {history.map((food, index) => (

@@ -13,7 +13,8 @@ const THEME_KEY = 'meal-picker-theme'
 function loadSavedItems(key) {
   try {
     const saved = JSON.parse(localStorage.getItem(key))
-    return Array.isArray(saved) ? saved : []
+    if (!Array.isArray(saved)) return []
+    return saved.map((item) => foods.find((food) => food.id === item.id) ?? item)
   } catch {
     return []
   }
@@ -25,7 +26,7 @@ function App() {
     if (savedTheme === 'light' || savedTheme === 'dark') return savedTheme
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
   })
-  const [selectedCategory, setSelectedCategory] = useState('Any')
+  const [selectedCategory, setSelectedCategory] = useState('Hepsi')
   const [selectedFood, setSelectedFood] = useState(null)
   const [favorites, setFavorites] = useState(() => loadSavedItems(FAVORITES_KEY))
   const [history, setHistory] = useState(() => loadSavedItems(HISTORY_KEY).slice(0, 5))
@@ -44,7 +45,7 @@ function App() {
   }, [theme])
 
   function pickFood() {
-    const categoryFoods = selectedCategory === 'Any'
+    const categoryFoods = selectedCategory === 'Hepsi'
       ? foods
       : foods.filter((food) => food.category === selectedCategory)
 
@@ -81,9 +82,9 @@ function App() {
           />
         </div>
         <div className="hero-content">
-          <span className="eyebrow">Dinner decisions, solved</span>
+          <span className="eyebrow">Akşam yemeği kararsızlığına son</span>
           <h1>What Should I Eat?</h1>
-          <p>Can’t decide what to eat? Let us choose for you.</p>
+          <p>Ne yiyeceğine karar veremiyor musun? Senin için biz seçelim.</p>
         </div>
       </header>
 
@@ -95,9 +96,9 @@ function App() {
             <div className="pick-action">
               <span className="step-number">2</span>
               <button type="button" className="pick-button" onClick={pickFood}>
-                <span aria-hidden="true">🎲</span> Pick My Food
+                <span aria-hidden="true">🎲</span> Yemeğimi Seç
               </button>
-              <p>Selected: <strong>{selectedCategory}</strong></p>
+              <p>Seçili kategori: <strong>{selectedCategory}</strong></p>
             </div>
           </div>
 
@@ -118,7 +119,7 @@ function App() {
       </main>
 
       <footer>
-        <p>Made for hungry, indecisive people <span aria-hidden="true">🍴</span></p>
+        <p>Acıkmış ve kararsız kalanlar için yapıldı <span aria-hidden="true">🍴</span></p>
       </footer>
     </div>
   )
