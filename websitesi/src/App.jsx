@@ -3,10 +3,12 @@ import CategorySelector from './components/CategorySelector.jsx'
 import Favorites from './components/Favorites.jsx'
 import FoodResult from './components/FoodResult.jsx'
 import RecentPicks from './components/RecentPicks.jsx'
+import ThemeToggle from './components/ThemeToggle.jsx'
 import { foods } from './data/foods.js'
 
 const FAVORITES_KEY = 'meal-picker-favorites'
 const HISTORY_KEY = 'meal-picker-history'
+const THEME_KEY = 'meal-picker-theme'
 
 function loadSavedItems(key) {
   try {
@@ -18,6 +20,11 @@ function loadSavedItems(key) {
 }
 
 function App() {
+  const [theme, setTheme] = useState(() => {
+    const savedTheme = localStorage.getItem(THEME_KEY)
+    if (savedTheme === 'light' || savedTheme === 'dark') return savedTheme
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+  })
   const [selectedCategory, setSelectedCategory] = useState('Any')
   const [selectedFood, setSelectedFood] = useState(null)
   const [favorites, setFavorites] = useState(() => loadSavedItems(FAVORITES_KEY))
@@ -30,6 +37,11 @@ function App() {
   useEffect(() => {
     localStorage.setItem(HISTORY_KEY, JSON.stringify(history))
   }, [history])
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme
+    localStorage.setItem(THEME_KEY, theme)
+  }, [theme])
 
   function pickFood() {
     const categoryFoods = selectedCategory === 'Any'
@@ -62,6 +74,12 @@ function App() {
     <div className="app-shell">
       <header className="hero">
         <div className="hero-overlay"></div>
+        <div className="theme-toggle-wrap">
+          <ThemeToggle
+            theme={theme}
+            onToggle={() => setTheme((current) => current === 'dark' ? 'light' : 'dark')}
+          />
+        </div>
         <div className="hero-content">
           <span className="eyebrow">Dinner decisions, solved</span>
           <h1>What Should I Eat?</h1>
